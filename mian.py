@@ -85,6 +85,31 @@ def guess_number():
     return 'derrota'
 
 def translator():
-    pass
+    dictionary = {
+        "dog": "perro", "cat": "gato", "house": "casa", "apple": "manzana", "car": "coche",
+        "water": "agua", "book": "libro", "sun": "sol", "moon": "luna", "tree": "árbol",
+        "cloud": "nube", "bird": "pájaro", "flower": "flor", "window": "ventana", "computer": "ordenador",
+        "phone": "teléfono", "table": "mesa", "chair": "silla", "door": "puerta", "road": "camino"
+    }
+
+    words = random.sample(list(dictionary.keys()), 5)
+    corrects = 0
+
+    for word in words:
+        translate = input(f"¿Cuál es la traducción de '{word}'?: ").lower()
+        if translate == dictionary[word]:
+            corrects += 1
+            print("¡Correcto!")
+        else:
+            print(f"Incorrecto. La respuesta correcta era '{dictionary[word]}'.")
+
+    print(f"Obtuviste {corrects} de 5.")
+    if corrects == 5:
+        return 'victoria'
+    elif corrects >= 3:
+        return 'empate'
+    else:
+        return 'derrota'
+
 
 menu()
