@@ -44,7 +44,21 @@ def menu():
     root.mainloop()
 
 def rock_paper_scissor():
-    label = ttk.Label(rock_paper_scissor())
+    #Cambiar que cree otra ventana, que sustituya la otra | also cambiar las imagenes a png
+    root = tk.Tk()
+    root.title("Piedra Papel Tijeras")
+    menu_bar = tk.Menu(root)
+    root.config(menu=menu_bar)
+    root.geometry("600x600")
+    img = Image.open("images/imagen_menu_piedra-papel-tijera.jpeg").resize((600, 600))
+    filename_menu = ImageTk.PhotoImage(img)
+    canvas = tk.Canvas(root, width=600, height=600)
+    canvas.pack(fill="both", expand=True)
+    canvas.create_image(10, 10, image=filename_menu, anchor="nw")
+    canvas.create_text(270, 60, fill="black", font="calibri 30")
+
+
+    #label = ttk.Label(rock_paper_scissor())
     options = ["piedra", "papel", "tijera"]
     player = input("Elige: piedra, papel o tijera: ").lower()
     if player not in options:
