@@ -1,10 +1,17 @@
+import random
 import tkinter as tk
 from cProfile import label
 from doctest import master
 from tkinter import NE, ttk
 
 from PIL import ImageTk, Image
-
+def show_result(result):
+    if result == 'victoria':
+        print("¡Felicidades, ganaste!")
+    elif result == 'derrota':
+        print("Lo siento, has perdido.")
+    elif result == 'empate':
+        print("¡Es un empate!")
 
 def menu():
     root = tk.Tk()
@@ -27,10 +34,10 @@ def menu():
     button_game3 = ttk.Button(root, text="Traducir", command=translator)
     quit_button = ttk.Button(root, text="Salir", command=root.destroy)
 
-    canvas.create_window(200, 200, anchor="nw", window=button_game1)
-    canvas.create_window(200, 300, anchor="nw", window=button_game2)
-    canvas.create_window(200, 400, anchor="nw", window=button_game3)
-    canvas.create_window(200, 500, anchor="nw", window=quit_button)
+    canvas.create_window(250, 200, anchor="nw", window=button_game1)
+    canvas.create_window(250, 300, anchor="nw", window=button_game2)
+    canvas.create_window(250, 400, anchor="nw", window=button_game3)
+    canvas.create_window(250, 500, anchor="nw", window=quit_button)
 
 
 
@@ -43,6 +50,24 @@ def guess_number():
     pass
 
 def translator():
-    pass
+    number = random.randint(0, 200)
+    intentos = 5
+
+    for intento in range(1, intentos + 1):
+        try:
+            player = int(input(f"Intento {intento}/{intentos}. Adivina el número (0-200): "))
+        except ValueError:
+            print("Por favor, introduce un número válido.")
+            continue
+
+        if player == number:
+            return 'victoria'
+        elif player < number:
+            print("El número es mayor.")
+        else:
+            print("El número es menor.")
+
+    print(f"El número era {number}.")
+    return 'derrota'
 
 menu()
