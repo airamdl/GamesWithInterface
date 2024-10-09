@@ -45,11 +45,25 @@ def menu():
 
 def rock_paper_scissor():
     label = ttk.Label(rock_paper_scissor())
+    options = ["piedra", "papel", "tijera"]
+    player = input("Elige: piedra, papel o tijera: ").lower()
+    if player not in options:
+        print("Opción no válida.")
+        return 'derrota'
+
+    machine = random.choice(options)
+    print(f"La máquina eligió: {machine}")
+
+    if player == machine:
+        return 'empate'
+    elif (player == "piedra" and machine == "tijera") or \
+            (player == "papel" and machine == "piedra") or \
+            (player == "tijera" and machine == "papel"):
+        return 'victoria'
+    else:
+        return 'derrota'
 
 def guess_number():
-    pass
-
-def translator():
     number = random.randint(0, 200)
     intentos = 5
 
@@ -69,5 +83,8 @@ def translator():
 
     print(f"El número era {number}.")
     return 'derrota'
+
+def translator():
+    pass
 
 menu()
